@@ -11,7 +11,7 @@ export default function Home() {
         <h1>Welcome to the Octopus Energy Frontend code test!</h1>
         <p>
           Get started by visiting the <code>/product</code> URL and editing{" "}
-          <code>client/pages/product.js</code>
+          <code>client/pages/product.tsx</code>
         </p>
       </div>
     </main>
