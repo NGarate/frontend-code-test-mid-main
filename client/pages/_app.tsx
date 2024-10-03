@@ -1,5 +1,6 @@
-import '@radix-ui/themes/styles.css';
 import '../styles/globals.css';
+import '@radix-ui/themes/styles.css';
+import '../styles/radixCustomTheme.css';
 
 interface MyAppProps {
   Component: React.ElementType;

@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 import StyledComponentsRegistry from '../lib/registry';
+import { Theme } from '@radix-ui/themes';
 
 export default function Document() {
   return (
@@ -15,8 +16,10 @@ export default function Document() {
       </Head>
       <body>
         <StyledComponentsRegistry>
-          <Main />
-          <NextScript />
+          <Theme appearance="dark">
+            <Main />
+            <NextScript />
+          </Theme>
         </StyledComponentsRegistry>
       </body>
     </Html>
