@@ -1,8 +1,6 @@
 import '@radix-ui/themes/styles.css';
 import '../styles/globals.css';
 
-import React from 'react';
-
 interface MyAppProps {
   Component: React.ElementType;
   pageProps: unknown;
