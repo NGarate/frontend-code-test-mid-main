@@ -14,4 +14,11 @@ export default [
   eslintConfigPrettier,
   { languageOptions: { ...jsxA11y.flatConfigs.recommended.languageOptions, globals: globals.browser } },
   { rules: { 'react/react-in-jsx-scope': 'off' } },
+  {
+    settings: {
+      'jsx-a11y': {
+        polymorphicPropName: 'as',
+      },
+    },
+  },
 ];
