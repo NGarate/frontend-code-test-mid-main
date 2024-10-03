@@ -1,15 +1,11 @@
-import { Html, Head, Main, NextScript } from "next/document";
-import StyledComponentsRegistry from './lib/registry';
+import { Html, Head, Main, NextScript } from 'next/document';
+import StyledComponentsRegistry from '../lib/registry';
 
 export default function Document() {
   return (
     <Html>
       <Head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://static.octopuscdn.com/fonts/Gotham/fonts.min.css"
-        />
+        <link rel="stylesheet" type="text/css" href="https://static.octopuscdn.com/fonts/Gotham/fonts.min.css" />
         <link
           rel="icon"
           type="image/png"
@@ -18,8 +14,10 @@ export default function Document() {
         ></link>
       </Head>
       <body>
-        <Main />
-        <NextScript />
+        <StyledComponentsRegistry>
+          <Main />
+          <NextScript />
+        </StyledComponentsRegistry>
       </body>
     </Html>
   );
