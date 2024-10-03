@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.37.1",
+    "styled-components": "^6.1.13",
     "globals": "^15.10.0",
     "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.3",
