@@ -1,31 +1,12 @@
-import { Container, DataList, Grid, Box, Heading, Text } from '@radix-ui/themes';
+import { Container, DataList, Grid, Box, Heading } from '@radix-ui/themes';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import priceFormatter from '@lib/priceFormatter';
-import ProductImage from '@components/product/producImage';
+import ProductImage from '@components/product/image';
+import ProductMain from '@components/product/main';
 
 const DEFAULT_CULTURE = 'en-GB';
 
-const ProductMain = styled(Box)`
-  order: 1;
-  padding: var(--space-3);
-  @media (min-width: 1024px) {
-    order: 4;
-  }
-`;
-const ProductSubTitle = styled(Text)`
-  color: var(--purpleHaze);
-  font-weight: var(--font-weight-bold);
-  order: 1;
-  padding: var(--space-3) 0;
-  @media (min-width: 1024px) {
-    order: 4;
-  }
-`;
-const PriceCta = styled.div`
-  padding: var(--space-3) 0;
-`;
 const ProductDescription = styled(Box)`
   background-color: var(--hemocyanin);
   padding: var(--space-3);
@@ -62,13 +43,7 @@ export default function Product({ product }: ProductProps) {
     <Container size="1" maxWidth={{ sm: '100%', md: '800px' }}>
       <Grid columns={{ sm: '1', md: '3' }}>
         <ProductImage />
-        <ProductMain gridColumn={{ sm: '1', md: '2' }}>
-          <Heading as="h1" size="8">
-            {product.name}
-          </Heading>
-          <ProductSubTitle>{`${product.power} // Packet of ${product.quantity}`}</ProductSubTitle>
-          <PriceCta>{localizedPrice}</PriceCta>
-        </ProductMain>
+        <ProductMain product={product} price={localizedPrice} />
         <ProductDescription>
           <Heading as="h2" size="6">
             Description
