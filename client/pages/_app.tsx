@@ -1,6 +1,8 @@
-import '../styles/globals.css';
+import '@styles/globals.css';
 import '@radix-ui/themes/styles.css';
-import '../styles/radixCustomTheme.css';
+import '@styles/radixCustomTheme.css';
+import Header from '@components/header';
+import Footer from '@components/footer';
 
 interface MyAppProps {
   Component: React.ElementType;
@@ -8,7 +10,13 @@ interface MyAppProps {
 }
 
 function MyApp({ Component, pageProps }: MyAppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+      <Footer />
+    </>
+  );
 }
 
 export default MyApp;
