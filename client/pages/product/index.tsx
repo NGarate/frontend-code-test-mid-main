@@ -1,7 +1,7 @@
 import { AspectRatio, Container, DataList, Grid, Box, Heading, Text } from '@radix-ui/themes';
 import styled from 'styled-components';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import priceFormatter from '../lib/priceFormatter';
+import priceFormatter from '@lib/priceFormatter';
 
 const DEFAULT_CULTURE = 'en-GB';
 
