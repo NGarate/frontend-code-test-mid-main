@@ -28,22 +28,23 @@ type ProductProps = {
 };
 
 export default function Product({ product }: ProductProps) {
-  const { value: price, currency, decimal_places: decimalPlaces } = product.price;
-  const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price });
+  const { value, currency, decimal_places: decimalPlaces } = product.price;
+  const { brand, colour, height, id, length, model_code, name, power, quantity, weight, width } = product;
+  const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price:value });
   return (
     <Container size="1" maxWidth={{ sm: '100%', md: '800px' }}>
       <Grid columns={{ sm: '1', md: '3' }}>
         <ProductImage />
-        <ProductMain product={product} price={localizedPrice} />
+        <ProductMain id={id} name={name} power={power} quantity={quantity} price={localizedPrice} />
         <ProductDescription description={product.description} />
         <ProductSpecs
-          brand={product.brand}
-          weight={product.weight}
-          height={product.height}
-          width={product.width}
-          length={product.length}
-          model_code={product.model_code}
-          colour={product.colour}
+          brand={brand}
+          weight={weight}
+          height={height}
+          width={width}
+          length={length}
+          model_code={model_code}
+          colour={colour}
         />
       </Grid>
     </Container>
