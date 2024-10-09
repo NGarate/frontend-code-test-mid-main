@@ -1,21 +1,12 @@
-import { AspectRatio, Container, DataList, Grid, Box, Heading, Text } from '@radix-ui/themes';
+import { Container, DataList, Grid, Box, Heading, Text } from '@radix-ui/themes';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import priceFormatter from '@lib/priceFormatter';
+import ProductImage from '@components/product/producImage';
 
 const DEFAULT_CULTURE = 'en-GB';
 
-const ProductImage = styled(AspectRatio)`
-  background: var(--siphon);
-  order: 0;
-  padding: var(--space-3);
-`;
-const StyledImage = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
-`;
 const ProductMain = styled(Box)`
   order: 1;
   padding: var(--space-3);
@@ -65,14 +56,13 @@ type ProductProps = {
 };
 
 export default function Product({ product }: ProductProps) {
+  console.log(JSON.stringify(product, null, 2));
   const { value: price, currency, decimal_places: decimalPlaces } = product.price;
   const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price });
   return (
     <Container size="1" maxWidth={{ sm: '100%', md: '800px' }}>
       <Grid columns={{ sm: '1', md: '3' }}>
-        <ProductImage>
-          <StyledImage src="/philips-plumen.jpg" alt="Phillips Plumen" />
-        </ProductImage>
+        <ProductImage />
         <ProductMain gridColumn={{ sm: '1', md: '2' }}>
           <Heading as="h1" size="8">
             {product.name}
@@ -118,15 +108,21 @@ export default function Product({ product }: ProductProps) {
   );
 }
 
-export async function getStaticProps(): ProductProps {
+export async function getStaticProps({ params }): ProductProps {
+  const id = params.id;
+  if (isNaN(id)) {
+    throw new Error('Parameter is not a number!');
+  }
+
   const client = new ApolloClient({
     uri: 'http://localhost:3000/',
     cache: new InMemoryCache(),
   });
+
   const { data } = await client.query({
     query: gql`
       query GetProduct {
-        Product(id: 1) {
+        Product(id: ${id}) {
           id
           name
           price
@@ -148,5 +144,12 @@ export async function getStaticProps(): ProductProps {
 
   return {
     props: { product: data.Product },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { id: '1' } }],
+    fallback: false,
   };
 }
