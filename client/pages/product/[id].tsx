@@ -1,9 +1,10 @@
-import { Container, DataList, Grid, Box, Heading } from '@radix-ui/themes';
+import { Container, Grid, Box, Heading } from '@radix-ui/themes';
 import styled from 'styled-components';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import priceFormatter from '@lib/priceFormatter';
 import ProductImage from '@components/product/image';
 import ProductMain from '@components/product/main';
+import ProductSpecs from '@components/product/specs';
 
 const DEFAULT_CULTURE = 'en-GB';
 
@@ -16,20 +17,7 @@ const ProductDescription = styled(Box)`
     order: 1;
   }
 `;
-const ProductSpecs = styled(Box)`
-  padding: var(--space-4);
-  order: 3;
 
-  @media (min-width: 1024px) {
-    order: 2;
-  }
-`;
-const DataListRoot = styled(DataList.Root)`
-  padding-top: var(--space-4);
-`;
-const StyledLabel = styled(DataList.Label)`
-  color: var(--ice);
-`;
 type ProductProps = {
   product: {
     img_url: string;
@@ -50,33 +38,15 @@ export default function Product({ product }: ProductProps) {
           </Heading>
           <Box pt="4">{product.description}</Box>
         </ProductDescription>
-        <ProductSpecs>
-          <Heading as="h2" size="6">
-            Specifications
-          </Heading>
-          <DataListRoot orientation="horizontal">
-            <DataList.Item>
-              <StyledLabel minWidth="88px">Brand</StyledLabel>
-              <DataList.Value>{product.brand}</DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <StyledLabel minWidth="88px">Item weight (g)</StyledLabel>
-              <DataList.Value>{product.weight}</DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <StyledLabel minWidth="88px">Dimensions (cm)</StyledLabel>
-              <DataList.Value>{`${product.height} x ${product.width} x ${product.length}`}</DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <StyledLabel minWidth="88px">Item Model number</StyledLabel>
-              <DataList.Value>{product.model_code}</DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <StyledLabel minWidth="88px">Colour</StyledLabel>
-              <DataList.Value>{product.colour}</DataList.Value>
-            </DataList.Item>
-          </DataListRoot>
-        </ProductSpecs>
+        <ProductSpecs
+          brand={product.brand}
+          weight={product.weight}
+          height={product.height}
+          width={product.width}
+          length={product.length}
+          model_code={product.model_code}
+          colour={product.colour}
+        />
       </Grid>
     </Container>
   );
