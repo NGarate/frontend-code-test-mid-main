@@ -26,11 +26,19 @@ const StyledBadge = styled.div`
 `;
 
 export default function CartIcon() {
-  const { cartItems } = useContext(CartContext) as { cartItems: Map<string, number> };
+  const { cartItems, setCartItems, setLastUpdated } = useContext(CartContext) as {
+    cartItems: Map<string, number>;
+    setCartItems: (cartItems: CartItemsMap) => void;
+    setLastUpdated: (time: number) => void;
+  };
   const totalItems = Array.from(cartItems.values()).reduce((acc, item) => acc + item, 0);
+  const handleOnClick = () => {
+    setLastUpdated(Date.now());
+    setCartItems(new Map());
+  };
 
   return (
-    <Button>
+    <Button onClick={handleOnClick}>
       <img src="/basket.svg" alt="Cart icon" />
       <StyledBadge totalItems={totalItems}>{totalItems}</StyledBadge>
     </Button>
