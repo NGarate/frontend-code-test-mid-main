@@ -56,7 +56,6 @@ type ProductProps = {
 };
 
 export default function Product({ product }: ProductProps) {
-  console.log(JSON.stringify(product, null, 2));
   const { value: price, currency, decimal_places: decimalPlaces } = product.price;
   const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price });
   return (
