@@ -13,14 +13,15 @@ interface MyAppProps {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const [cartItems, setCartItems] = useState<CartItemsMap>(new Map());
+    const [lastUpdated, setLastUpdated] = useState<number>(Date.now());
 
-  return (
-    <CartContext.Provider value={{ cartItems, setCartItems }}>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </CartContext.Provider>
-  );
+    return (
+      <CartContext.Provider value={{ cartItems, setCartItems, lastUpdated, setLastUpdated }}>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </CartContext.Provider>
+    );
 }
 
 export default MyApp;

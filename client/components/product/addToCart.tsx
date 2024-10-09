@@ -80,14 +80,16 @@ interface AddToCartProps {
 }
 
 export default function AddToCart({ id, price }: AddToCartProps) {
-  const { cartItems, setCartItems } = useContext(CartContext) as {
+  const { cartItems, setCartItems, setLastUpdated } = useContext(CartContext) as {
     cartItems: CartItemsMap;
     setCartItems: (cartItems: CartItemsMap) => void;
+    setLastUpdated: (time: number) => void;
   };
   const [quantity, setQuantity] = useState(1);
   const handleAddToCart = () => {
     const cartItemQuantity = cartItems.get(id) || 0;
     setCartItems(cartItems.set(id, cartItemQuantity + quantity));
+    setLastUpdated(Date.now());
   };
 
   return (
