@@ -1,26 +1,29 @@
-import { Container, Grid, Box, Heading } from '@radix-ui/themes';
-import styled from 'styled-components';
+import { Container, Grid } from '@radix-ui/themes';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import priceFormatter from '@lib/priceFormatter';
 import ProductImage from '@components/product/image';
 import ProductMain from '@components/product/main';
 import ProductSpecs from '@components/product/specs';
+import ProductDescription from '@components/product/description';
 
 const DEFAULT_CULTURE = 'en-GB';
-
-const ProductDescription = styled(Box)`
-  background-color: var(--hemocyanin);
-  padding: var(--space-3);
-  order: 2;
-
-  @media (min-width: 1024px) {
-    order: 1;
-  }
-`;
 
 type ProductProps = {
   product: {
     img_url: string;
+    price: {
+      value: number;
+      currency: string;
+      decimal_places: number;
+    };
+    description: string;
+    brand: string;
+    weight: number;
+    height: number;
+    width: number;
+    length: number;
+    model_code: string;
+    colour: string;
   };
 };
 
@@ -32,12 +35,7 @@ export default function Product({ product }: ProductProps) {
       <Grid columns={{ sm: '1', md: '3' }}>
         <ProductImage />
         <ProductMain product={product} price={localizedPrice} />
-        <ProductDescription>
-          <Heading as="h2" size="6">
-            Description
-          </Heading>
-          <Box pt="4">{product.description}</Box>
-        </ProductDescription>
+        <ProductDescription description={product.description} />
         <ProductSpecs
           brand={product.brand}
           weight={product.weight}
