@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import StyledComponentsRegistry from '../lib/registry';
+import StyledComponentsRegistry from '@lib/registry';
 import { Theme } from '@radix-ui/themes';
 
 export default function Document() {
