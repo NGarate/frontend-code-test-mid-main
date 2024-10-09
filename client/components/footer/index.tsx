@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  background-color: var(--siphon);
-  color: var(--plum);
-  padding: var(--space-2) var(--space-3);
+  background-color: var(--hemocyanin);
+  color: var(--purpleHaze);
+  padding: var(--space-3);
+  font-size: var(--font-size-2);
 `;
 
 const Footer = () => (
