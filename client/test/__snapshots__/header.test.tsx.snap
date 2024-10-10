@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Header correctly with multiple cart items 1`] = `
+<header
+  className="sc-967ce249-0 gpbTCD"
+>
+  <div
+    className="sc-967ce249-1 iihHil"
+  >
+    <img
+      alt="Octopus Energy logo"
+      className="sc-967ce249-2 kyYZFM"
+      src="/octopus-logo.svg"
+    />
+    <button
+      className="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-IconButton sc-a100302e-0 bFlczo"
+      data-accent-color=""
+      onClick={[Function]}
+    >
+      <img
+        alt="Cart icon"
+        src="/basket.svg"
+      />
+      <div
+        className="sc-a100302e-1 kEMDru"
+      >
+        8
+      </div>
+    </button>
+  </div>
+</header>
+`;
+
+exports[`renders the Header correctly with no cart items 1`] = `
+<header
+  className="sc-967ce249-0 gpbTCD"
+>
+  <div
+    className="sc-967ce249-1 iihHil"
+  >
+    <img
+      alt="Octopus Energy logo"
+      className="sc-967ce249-2 kyYZFM"
+      src="/octopus-logo.svg"
+    />
+    <button
+      className="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-IconButton sc-a100302e-0 bFlczo"
+      data-accent-color=""
+      onClick={[Function]}
+    >
+      <img
+        alt="Cart icon"
+        src="/basket.svg"
+      />
+      <div
+        className="sc-a100302e-1 hbArcs"
+      >
+        0
+      </div>
+    </button>
+  </div>
+</header>
+`;
