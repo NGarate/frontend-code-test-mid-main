@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { Box, Button, Text } from '@radix-ui/themes';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import CartContext, { CartItemsMap } from '@lib/cartContext';
-
 
 const Container = styled(Box)`
   grid-area: addToCart;
@@ -59,19 +58,30 @@ const QuantityItem = styled(Text)`
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-bold);
 `;
-const AddButton = styled(Button)`
+const SecondRow = styled(Box)`
   width: 100%;
-  justify-self: stretch;
+  align-items: center;
+  display: flex;
+  margin-top: var(--space-4);
+`;
+const AddButton = styled(Button)`
+  flex-grow: 4.5;
+  align-self: stretch;
   background-color: var(--sohoLights);
   color: var(--hemocyanin);
   text-align: center;
   padding: var(--space-5);
-  align-self: stretch;
-  margin-top: var(--space-4);
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-medium);
   border-radius: var(--radius-5);
   cursor: var(--cursor-button);
+`;
+const CartItemsBadge = styled(Box)`
+  margin: auto;
+  padding: 0 var(--space-4);
+  color: var(--ice);
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-bold);
 `;
 
 interface AddToCartProps {
@@ -86,10 +96,10 @@ export default function AddToCart({ id, price }: AddToCartProps) {
     lastUpdated: number;
     setLastUpdated: (time: number) => void;
   };
+  const cartItemQuantity = cartItems.get(id) || 0;
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    const cartItemQuantity = cartItems.get(id) || 0;
     setCartItems(cartItems.set(id, cartItemQuantity + quantity));
     setLastUpdated(Date.now());
   };
@@ -109,9 +119,12 @@ export default function AddToCart({ id, price }: AddToCartProps) {
           +
         </PlusIcon>
       </CounterContainer>
-      <AddButton variant="solid" onClick={handleAddToCart}>
-        Add to cart
-      </AddButton>
+      <SecondRow>
+        <AddButton variant="solid" onClick={handleAddToCart}>
+          Add to cart
+        </AddButton>
+        {!!cartItemQuantity && <CartItemsBadge title="Basket items">{cartItemQuantity}</CartItemsBadge>}
+      </SecondRow>
     </Container>
   );
 }
