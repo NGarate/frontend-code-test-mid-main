@@ -11,7 +11,7 @@ const Button = styled(IconButton)`
 
 const StyledBadge = styled.div`
   display: none;
-  ${(props) => props.totalItems > 0 && `display: block;`}
+  ${(props) => props.$totalItems > 0 && `display: block;`}
   position: absolute;
   right: -0.8em;
   top: -0.8em;
@@ -33,14 +33,14 @@ export default function CartIcon() {
   };
   const totalItems = Array.from(cartItems.values()).reduce((acc, item) => acc + item, 0);
   const handleOnClick = () => {
-    setLastUpdated(Date.now());
     setCartItems(new Map());
+    setLastUpdated(Date.now());
   };
 
   return (
     <Button onClick={handleOnClick}>
       <img src="/basket.svg" alt="Cart icon" />
-      <StyledBadge totalItems={totalItems}>{totalItems}</StyledBadge>
+      <StyledBadge $totalItems={totalItems}>{totalItems}</StyledBadge>
     </Button>
   );
 }

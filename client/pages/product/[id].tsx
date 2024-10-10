@@ -5,11 +5,13 @@ import ProductImage from '@components/product/image';
 import ProductMain from '@components/product/main';
 import ProductSpecs from '@components/product/specs';
 import ProductDescription from '@components/product/description';
+import AddToCart from '@components/product/addToCart';
 
 const DEFAULT_CULTURE = 'en-GB';
 
 type ProductProps = {
   product: {
+    id: number;
     img_url: string;
     price: {
       value: number;
@@ -30,12 +32,23 @@ type ProductProps = {
 export default function Product({ product }: ProductProps) {
   const { value, currency, decimal_places: decimalPlaces } = product.price;
   const { brand, colour, height, id, length, model_code, name, power, quantity, weight, width } = product;
-  const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price:value });
+  const localizedPrice = priceFormatter({ currency, decimalPlaces, culture: DEFAULT_CULTURE, price: value });
+
   return (
-    <Container size="1" maxWidth={{ sm: '100%', md: '800px' }}>
-      <Grid columns={{ sm: '1', md: '3' }}>
+    <Container size="2" maxWidth={{ xs: '100%', sm: '800px' }}>
+      <Grid
+        justify="center"
+        align="center"
+        columns={{ initial: '1', sm: '3' }}
+        rows={{ initial: 'max-content', sm: 'max-content' }}
+        areas={{
+          initial: "'image' 'name' 'addToCart' 'description' 'specifications'",
+          sm: "'image description specifications' 'name . addToCart'",
+        }}
+      >
         <ProductImage />
         <ProductMain id={id} name={name} power={power} quantity={quantity} price={localizedPrice} />
+        <AddToCart price={localizedPrice} id={id} />
         <ProductDescription description={product.description} />
         <ProductSpecs
           brand={brand}

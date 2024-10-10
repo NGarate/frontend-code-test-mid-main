@@ -3,11 +3,7 @@ import { Box, DataList, Heading } from '@radix-ui/themes';
 
 const Container = styled(Box)`
   padding: var(--space-4);
-  order: 3;
-
-  @media (min-width: 1024px) {
-    order: 2;
-  }
+  grid-area: specifications;
 `;
 const DataListRoot = styled(DataList.Root)`
   padding-top: var(--space-4);
@@ -26,7 +22,7 @@ type ProductProps = {
   colour: string;
 };
 
-export default function MainProduct({ brand, weight, height, width, length, model_code, colour }: ProductProps) {
+export default function ProductMain({ brand, weight, height, width, length, model_code, colour }: ProductProps) {
   return (
     <Container>
       <Heading as="h2" size="6">
