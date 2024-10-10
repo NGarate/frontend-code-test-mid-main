@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Box, Button, Text } from '@radix-ui/themes';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import CartContext, { CartItemsMap } from '@lib/cartContext';
 
 const Container = styled(Box)`
