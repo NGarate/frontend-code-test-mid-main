@@ -4,3 +4,7 @@
   --color-background: var(--siphon);
   color: var(--ice);
 }
+.radix-themes {
+  --cursor-button: pointer;
+  --cursor-disabled: not-allowed;
+}
